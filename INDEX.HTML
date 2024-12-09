@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HERRAMIENTAS INFORMATICAS Y MANTENIMIENTO DE EQUIPOS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('fondo.jpg'); /* Cambia 'fondo.jpg' por el nombre de tu archivo */
+            background-size: cover; /* Ajusta el tamaño de la imagen para que cubra toda la pantalla */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita que la imagen se repita */
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background-color: rgba(250, 218, 221, 0.9); /* Fondo rosa claro con transparencia */
+            color: #000;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        .btn-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .btn-container button {
+            margin: 5px;
+            font-size: 14px;
+            padding: 8px 12px;
+        }
+
+        .audio-section {
+            margin-top: 20px;
+            display: none; /* Oculta inicialmente */
+        }
+
+        .audio-item {
+            margin-bottom: 15px;
+        }
+
+        .audio-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .audio-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>HERRAMIENTAS INFORMATICAS Y MANTENIMIENTO DE EQUIPO</h1>
+        <h1>GLOSARIO</h1>
+        <p>"RODRIGUEZ CINTIA ROMINA"</p>
+    </div>
+
+    <div class="container">
+        <!-- Botones -->
+        <div class="btn-container row">
+            <!-- Botones generados dinámicamente -->
+        </div>
+
+        <!-- Sección de audios -->
+        <div id="audio-section">
+            <h3 class="mt-4">Audios letra: <span id="selected-letter"></span></h3>
+            <div id="audio-list" class="row">
+                <!-- Audios generados dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Datos de los audios (letra, nombre y fuente)
+        const audioData = {
+            A: [
+                { name: "Algoritmo", src: "algoritmo.mp3" },
+                { name: "Analogico", src: "analogico.mp3" },
+                { name: "Archivo", src: "archivo.mp3" }
+            ],
+            B: [
+                { name: "Barra de Estado", src: "barra de estado.mp3" },
+                { name: "Barra de Menus", src: "barra de menus.mp3" },
+                { name: "Audio B3", src: "B3.mp3" }
+            ],
+            C: [
+                { name: "Cluster", src: "cluster.mp3" },
+                { name: "Codificacion", src: "codificacion.mp3" },
+                { name: "Codigo", src: "codigo.mp3" }
+            ],
+            D: [
+                { name: "Digital", src: "digital.mp3" },
+                { name: "Direccion", src: "direcion.mp3" },
+                { name: "Directorio", src: "directorio.mp3" }
+            ],
+            E: [
+                { name: "Escritorio", src: "escritorio.mp3" },
+                { name: "Estilo", src: "estilo.mp3" },
+                { name: "Estrella", src: "estrella.mp3" }
+            ],
+            F: [
+                { name: "Formato", src: "formato.mp3" },
+                { name: "Formula", src: "formula.mp3" },
+                { name: "Foro", src: "foro.mp3" }
+            ],
+            G: [
+                { name: "Grafico", src: "grafico.mp3" },
+                { name: "Guia", src: "guia.mp3" },
+                { name: "Guion", src: "guion.mp3" }
+            ],
+            H: [
+                { name: "Hardware", src: "hardware.mp3" },
+                { name: "Htm", src: "htm.mp3" },
+                { name: "Hub", src: "hub.mp3" }
+            ],
+            I: [
+                { name: "Icono", src: "icono.mp3" },
+                { name: "Icono de documento", src: "icono de documento.mp3" },
+                { name: "Icono de Programa", src: "icono de programa.mp3" }
+            ],
+            J: [
+                { name: "Joystick", src: "joystick.mp3" },
+                { name: "Jpg", src: "jpg.mp3" },
+                { name: "Justificacion", src: "justificacion.mp3" }
+            ],
+            K: [
+                { name: "Kilobyte", src: "kb.mp3" }  
+            ],
+            L: [
+                { name: "Lapiz Optico", src: "lapiz optico.mp3" },
+                { name: "Laptop", src: "laptop.mp3" },
+                { name: "Libro de Trabajo", src: "libro de trabajo.mp3" }
+            ],
+            M: [
+                { name: "Margen", src: "margen.mp3" },
+                { name: "Maximizar", src: "maximizar.mp3" },
+                { name: "Megabyte", src: "megabyte.mp3" }
+            ],
+            N: [
+                { name: "Navegador", src: "navegador.mp3" },
+                { name: "Netbios", src: "netbios.mp3" },
+                { name: "Netware", src: "netware.mp3" }
+            ],
+            O: [
+                { name: "Objeto", src: "objeto.mp3" },
+                { name: "Off-Line", src: "off-line.mp3" },
+                { name: "On-Line", src: "on-line.mp3" }
+            ],
+            P: [
+                { name: "Panel de Control", src: "panel de control.mp3" },
+                { name: "Pantalla", src: "pantalla.mp3" },
+                { name: "Parametro", src: "parametro.mp3" }
+            ],
+            Q: [
+                { name: "QT", src: "qt.mp3" },
+                { name: "Qwerty", src: "qwerty.mp3" }  
+            ],
+            R: [
+                { name: "Registro", src: "registro.mp3" },
+                { name: "Resolucion", src: "resolucion.mp3" },
+                { name: "Ruta de Acceso", src: "ruta de acceso.mp3" }
+            ],
+            S: [
+                { name: "Sangria", src: "sangria.mp3" },
+                { name: "Sector", src: "sector.mp3" },
+                { name: "Sentencia", src: "sentencia.mp3" }
+            ],
+            T: [
+                { name: "Tag", src: "tag.mp3" },
+                { name: "Teclado", src: "teclado.mp3" },
+                { name: "Telnet", src: "telnet.mp3" }
+            ],
+            U: [
+                { name: "Unidad Aritmetico Logica", src: "unidad aritmetico logica.mp3" },
+                { name: "Unidad Central de Procesamiento", src: "unidad central de procesamiento.mp3" },
+                { name: "Unix", src: "unix.mp3" }
+            ],
+            V: [
+                { name: "Variable", src: "variable.mp3" },
+                { name: "Variable Global", src: "variable global.mp3" },
+                { name: "Variable Local", src: "variable local.mp3" }
+            ],
+            W: [
+                { name: "Wan", src: "wan.mp3" },
+                { name: "Wav", src: "wav.mp3" },
+                { name: "Windows", src: "windows.mp3" }
+            ],
+            X: [
+                { name: "XLS", src: "xls.mp3" },
+                { name: "XLW", src: "xlw.mp3" }
+            ],
+            Y: [{name: "Yellou Pages", src: "yellou pages.mp3"}
+            ],
+
+            // Agrega más letras según sea necesario
+        };
+
+        const letters = Object.keys(audioData);
+        const buttonContainer = document.querySelector(".btn-container");
+
+        // Crear botones para cada letra
+        letters.forEach(letter => {
+            const button = document.createElement("button");
+            button.classList.add("btn", "btn-primary", "col-auto");
+            button.innerText = letter;
+            button.onclick = () => showAudios(letter);
+            buttonContainer.appendChild(button);
+        });
+
+        // Mostrar los audios al seleccionar una letra
+        const showAudios = (letter) => {
+            const audioSection = document.getElementById("audio-section");
+            const audioList = document.getElementById("audio-list");
+            const selectedLetter = document.getElementById("selected-letter");
+
+            // Mostrar la sección de audios y actualizar la letra seleccionada
+            audioSection.style.display = "block";
+            selectedLetter.innerText = letter;
+
+            // Limpiar lista de audios anteriores
+            audioList.innerHTML = "";
+
+            // Cargar audios de la letra seleccionada
+            if (audioData[letter]) {
+                audioData[letter].forEach(audioInfo => {
+                    const audioContainer = document.createElement("div");
+                    audioContainer.classList.add("audio-container", "col-12");
+
+                    // Nombre del audio
+                    const audioName = document.createElement("div");
+                    audioName.classList.add("audio-name");
+                    audioName.innerText = audioInfo.name;
+
+                    // Reproductor de audio
+                    const audio = document.createElement("audio");
+                    audio.controls = true;
+                    audio.src = audioInfo.src;
+
+                    // Añadir nombre y audio al contenedor
+                    audioContainer.appendChild(audioName);
+                    audioContainer.appendChild(audio);
+                    audioList.appendChild(audioContainer);
+                });
+            }
+        };
+    </script>
+</body>
+</html>
